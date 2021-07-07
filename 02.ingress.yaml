@@ -1,0 +1,19 @@
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata: 
+  name: ingress-kennethreitz-httpbin
+  namespace: kind-test
+  annotations:
+    kubernetes.io/ingress.class: "nginx"
+    nginx.ingress.kubernetes.io/rewrite-target: /
+spec:
+  rules:
+  - host: www.kennethreitz-httpbin.com
+    http:
+      paths:
+      - path: /
+        backend:
+          service:
+            name: svc-kennethreitz-httpbin
+            port: 
+              number: 80
